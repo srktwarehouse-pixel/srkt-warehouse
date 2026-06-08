@@ -263,18 +263,18 @@ footer { background: #fff; border-top: 1px solid rgba(0,0,0,0.08); padding: 32px
 <div class="avail-strip" id="availability">
   <div class="strip-dot"></div>
   <span class="strip-label">Right now</span>
-  <span class="strip-pill">5 units available</span>
-  <span class="strip-label">— 82,000 sqft ready to occupy</span>
+  <span class="strip-pill" id="availUnits">5 units available</span>
+  <span class="strip-label" id="availSqft">— 82,000 sqft ready to occupy</span>
 </div>
 
 <section class="section section-navy">
-  <div class="section-label light">Available Space · 25 May 2026</div>
+  <div class="section-label light" id="updatedDate">Available Space · 25 May 2026</div>
   <h2 class="section-title light reveal">Available Space</h2>
   <p class="section-body light reveal">Tap any block to see the units inside. Green blocks have space available immediately. Minimum lease period is 11 months. WhatsApp us with your requirement and we respond same day.</p>
   <div class="occ-summary reveal">
-    <div class="occ-card"><div class="occ-num green">5</div><div class="occ-lbl">Vacant</div></div>
-    <div class="occ-card"><div class="occ-num white">11</div><div class="occ-lbl">Occupied</div></div>
-    <div class="occ-card"><div class="occ-num gold">82K</div><div class="occ-lbl">Sqft Free</div></div>
+    <div class="occ-card"><div class="occ-num green" id="vacantCount">5</div><div class="occ-lbl">Vacant</div></div>
+    <div class="occ-card"><div class="occ-num white" id="occupiedCount">11</div><div class="occ-lbl">Occupied</div></div>
+    <div class="occ-card"><div class="occ-num gold" id="freeSqft">82K</div><div class="occ-lbl">Sqft Free</div></div>
     <div class="occ-card"><div class="occ-num white">2.60L</div><div class="occ-lbl">Total Sqft</div></div>
   </div>
   <div class="blocks-wrap reveal">
@@ -443,7 +443,7 @@ footer { background: #fff; border-top: 1px solid rgba(0,0,0,0.08); padding: 32px
     <div class="contact-left">
       <div class="c-items">
         <div class="c-item"><div class="c-icon">📞</div><div><div class="c-label">Call or WhatsApp</div><a href="tel:+919948333333" class="c-val">+91 99483 33333</a><div class="c-note">K Partha Saradhi · CEO · Responds same day</div></div></div>
-        <div class="c-item"><div class="c-icon">✉️</div><div><div class="c-label">Email</div><a href="mailto:srktwarehouse@gmail.com?subject=Enquiry%20—%20SRKT%20Warehouse&body=Hi%2C%0A%0AName%3A%0ACompany%3A%0ARequirement%3A%0A%0AThank%20you." class="c-val">srktwarehouse@gmail.com</a><div class="c-note">Opens your email with a pre-filled enquiry</div></div></div>
+        <div class="c-item"><div class="c-icon">✉️</div><div><div class="c-label">Email</div><a href="mailto:pasrtha@srktwarehouse.in?subject=Enquiry%20—%20SRKT%20Warehouse&body=Hi%2C%0A%0AName%3A%0ACompany%3A%0ARequirement%3A%0A%0AThank%20you." class="c-val">srktwarehouse@gmail.com</a><div class="c-note">Opens your email with a pre-filled enquiry</div></div></div>
         <div class="c-item"><div class="c-icon">🏢</div><div><div class="c-label">Office Address</div><div class="c-val">14-133, SRKT Mansion<br>Near RTC Bus Complex<br>Rajahmundry — 533 103, AP</div></div></div>
         <div class="c-item"><div class="c-icon">📍</div><div><div class="c-label">Warehouse Location</div><div class="c-val">Rajahmundry, Andhra Pradesh</div><div class="c-note">Office and warehouse are at separate locations</div><a href="https://maps.app.goo.gl/UcFDpdMR34cZpsN4A" target="_blank" class="map-link">Open warehouse in Google Maps ↗</a></div></div>
       </div>
@@ -494,6 +494,17 @@ const obs = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add("visible"), i * 65); obs.unobserve(e.target); } });
 }, { threshold: 0.08, rootMargin: "0px 0px -24px 0px" });
 document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
+  fetch('availability.json?cache=' + new Date().getTime())
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('availUnits').textContent = data.vacant_count + ' units available';
+    document.getElementById('availSqft').textContent = '— ' + data.free_sqft.toLocaleString('en-IN') + ' sqft ready to occupy';
+    document.getElementById('updatedDate').textContent = 'Available Space · ' + data.updated_at;
+    document.getElementById('vacantCount').textContent = data.vacant_count;
+    document.getElementById('occupiedCount').textContent = data.occupied_count;
+    document.getElementById('freeSqft').textContent = data.free_sqft_display;
+  })
+  .catch(error => console.log('Availability data not loaded', error));
 </script>
 </body>
 </html>
