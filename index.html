@@ -503,6 +503,56 @@ document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
     document.getElementById('vacantCount').textContent = data.vacant_count;
     document.getElementById('occupiedCount').textContent = data.occupied_count;
     document.getElementById('freeSqft').textContent = data.free_sqft_display;
+
+    if (!data.units) return;
+
+    data.units.forEach(unit => {
+      document.querySelectorAll('.unit-row').forEach(row => {
+        const unitId = row.querySelector('.unit-id');
+        if (!unitId || unitId.textContent.trim() !== unit.unit) return;
+
+        const status = row.querySelector('.unit-status');
+        const dot = row.querySelector('.udot');
+        const oldCta = row.querySelector('.unit-cta');
+
+        if (unit.status.toLowerCase() === 'vacant') {
+          status.className = 'unit-status v';
+          status.innerHTML = '<span class="udot v"></span>Available';
+
+          if (!oldCta) {
+            const link = document.createElement('a');
+            link.className = 'unit-cta';
+            link.href = 'https://wa.me/919948333333?text=Hi%2C+I+am+interested+in+Unit+' + unit.unit + '+at+SRKT+Warehouse.';
+            link.textContent = 'Enquire on WhatsApp →';
+            row.appendChild(link);
+          }
+        } else {
+          status.className = 'unit-status o';
+          status.innerHTML = '<span class="udot o"></span>Occupied';
+          if (oldCta) oldCta.remove();
+        }
+      });
+    });
+
+    document.querySelectorAll('.block-item').forEach(blockItem => {
+      const blockName = blockItem.querySelector('.block-name').textContent.trim();
+      const blockUnits = data.units.filter(u => u.block === blockName);
+      const vacant = blockUnits.filter(u => u.status.toLowerCase() === 'vacant').length;
+      const occupied = blockUnits.filter(u => u.status.toLowerCase() === 'occupied').length;
+
+      const header = blockItem.querySelector('.block-header');
+      const badges = blockItem.querySelector('.block-badges');
+
+      if (vacant > 0) {
+        header.classList.add('has-vacant');
+        badges.innerHTML = '<span class="badge v">' + vacant + ' Vacant</span>' + 
+          (occupied > 0 ? '<span class="badge o">' + occupied + ' Occupied</span>' : '') +
+          '<span class="chevron">▼</span>';
+      } else {
+        header.classList.remove('has-vacant');
+        badges.innerHTML = '<span class="badge o">Fully Occupied</span><span class="chevron">▼</span>';
+      }
+    });
   })
   .catch(error => console.log('Availability data not loaded', error));
 </script>
