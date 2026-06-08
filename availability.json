@@ -1,8 +1,8 @@
 {
-  "updated_at": "08 Jun 2026",
-  "vacant_count": 5,
-  "occupied_count": 11,
-  "free_sqft": 82000,
-  "free_sqft_display": "82K",
-  "total_sqft_display": "2.60L"
+  "updated_at":"2026-06-08",
+  "vacant_count":4,
+  "occupied_count":12,
+  "free_sqft":82000,
+  "free_sqft_display":"82K",
+  "total_sqft_display":"2.60L"
 }
