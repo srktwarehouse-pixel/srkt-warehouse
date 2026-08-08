@@ -1,9 +1,9 @@
 {
   "updated_at":"2026-06-08",
-  "vacant_count":4,
-  "occupied_count":12,
+  "vacant_count":5,
+  "occupied_count":11,
   "free_sqft":82000,
   "free_sqft_display":"82K",
   "total_sqft_display":"2.60L",
-  "units":[{"unit":"1A","block":"Block 1","sqft":"15,000","status":"Vacant"}, {"unit":"1B","block":"Block 1","sqft":"15,000","status":"Vacant"}, {"unit":"2A","block":"Block 2","sqft":"16,300","status":"Occupied"}, {"unit":"2B","block":"Block 2","sqft":"15,700","status":"Occupied"}, {"unit":"3A","block":"Block 3","sqft":"16,300","status":"Occupied"}, {"unit":"3B","block":"Block 3","sqft":"15,700","status":"Occupied"}, {"unit":"4A","block":"Block 4","sqft":"20,000","status":"Occupied"}, {"unit":"4B","block":"Block 4","sqft":"20,000","status":"Vacant"}, {"unit":"5A","block":"Block 5","sqft":"12,000","status":"Occupied"}, {"unit":"5B","block":"Block 5","sqft":"11,000","status":"Occupied"}, {"unit":"6A","block":"Block 6","sqft":"11,000","status":"Occupied"}, {"unit":"6B","block":"Block 6","sqft":"10,000","status":"Occupied"}, {"unit":"7A","block":"Block 7","sqft":"12,000","status":"Vacant"}, {"unit":"7B","block":"Block 7","sqft":"11,000","status":"Occupied"}, {"unit":"8A","block":"Block 8","sqft":"12,000","status":"Occupied"}, {"unit":"8B","block":"Block 8","sqft":"11,000","status":"Occupied"}]
+  "units":[{"unit":"1A","block":"Block 1","sqft":"15,000","status":"Vacant"}, {"unit":"1B","block":"Block 1","sqft":"15,000","status":"Vacant"}, {"unit":"2A","block":"Block 2","sqft":"16,300","status":"Occupied"}, {"unit":"2B","block":"Block 2","sqft":"15,700","status":"Occupied"}, {"unit":"3A","block":"Block 3","sqft":"16,300","status":"Occupied"}, {"unit":"3B","block":"Block 3","sqft":"15,700","status":"Occupied"}, {"unit":"4A","block":"Block 4","sqft":"20,000","status":"Vacant"}, {"unit":"4B","block":"Block 4","sqft":"20,000","status":"Vacant"}, {"unit":"5A","block":"Block 5","sqft":"12,000","status":"Occupied"}, {"unit":"5B","block":"Block 5","sqft":"11,000","status":"Occupied"}, {"unit":"6A","block":"Block 6","sqft":"11,000","status":"Occupied"}, {"unit":"6B","block":"Block 6","sqft":"10,000","status":"Occupied"}, {"unit":"7A","block":"Block 7","sqft":"12,000","status":"Vacant"}, {"unit":"7B","block":"Block 7","sqft":"11,000","status":"Occupied"}, {"unit":"8A","block":"Block 8","sqft":"12,000","status":"Occupied"}, {"unit":"8B","block":"Block 8","sqft":"11,000","status":"Occupied"}]
 }
